@@ -20,11 +20,12 @@ def get_file():
     try:
         input_file = input("full file name: ")
         input_parsed = input_file.lower().split(".")
+        print(input_parsed)
         if len(input_parsed) != 2:
             raise FormatError 
         elif input_parsed[1] != "pdf":
             raise ExtensionError
-        elif re.search(r"\W+",input_parsed[0]) is not None:
+        elif re.search(r"[\!@#$%^&*()-+?_=,<>/]+",input_parsed[0]) is not None:
             raise NameError
         else:
             file_handle = fitz.open(input_file)
@@ -66,7 +67,6 @@ def save_file(pdf):
     while True:
         file_name = save_file_name_check()
         if file_name == "Error":
-            print("Error")
             pass
         else:
             pdf.save(file_name)
@@ -81,7 +81,7 @@ def save_file_name_check():
                 raise FormatError
             elif output_parsed[1] != "pdf":
                 raise ExtensionError
-            elif re.search(r"\W+",output_parsed[0]) is not None:
+            elif re.search(r"[\!@#$%^&*()-+?_=,<>/]+",output_parsed[0]) is not None:
                 raise NameError
             else:
                 return output_file
@@ -129,8 +129,6 @@ def range_delete(pdf,tp):
                 elif start == 0:
                     raise ValueError
                 else:
-                    #start = start -1
-                    #end = end -1
                     pdf.delete_pages(start-1, end-1)
                     print(f"delete from {start} to {end}")
                     return pdf
