@@ -17,7 +17,7 @@ def test_get_file(monkeypatch):
 
 def test_get_file_valid(monkeypatch):
     #test valid file names
-    test_file = "PDFSample.pdf"
+    test_file = "PDF Sample.pdf"
     monkeypatch.setattr('builtins.input', lambda _: test_file)
     assert get_file()[1] == 5
     #assert(type(get_file()).__name__ == "Document")
@@ -37,5 +37,6 @@ def test_save_file_name_check_valid(monkeypatch):
     #test invalid save file names
     monkeypatch.setattr('builtins.input', lambda _: "saved2.pdf")
     assert save_file_name_check() == "saved2.pdf"
-
+    monkeypatch.setattr('builtins.input', lambda _: "new saved file 2.pdf")
+    assert save_file_name_check() == "new saved file 2.pdf"
 
