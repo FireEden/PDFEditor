@@ -28,7 +28,7 @@ def get_file():
             raise NameError
         else:
             file_handle = fitz.open(input_file)
-            print(type(file_handle).__name__)
+            #print(type(file_handle).__name__)
             total_page = file_handle.page_count
             #print(f"file opened with {total_page} pages")
             return file_handle, total_page
