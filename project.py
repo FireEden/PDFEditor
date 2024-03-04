@@ -20,7 +20,6 @@ def get_file():
     try:
         input_file = input("full file name: ")
         input_parsed = input_file.lower().split(".")
-        print(input_parsed)
         if len(input_parsed) != 2:
             raise FormatError 
         elif input_parsed[1] != "pdf":
